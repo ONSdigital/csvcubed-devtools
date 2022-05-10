@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pyright') {
             steps {
-                sh 'poetry run pyright . --lib'
+                sh 'pyright . --lib'
             }
         }
         stage('Package') {
