@@ -1,4 +1,4 @@
-FROM gsscogs/pythonversiontesting:v1.0.1
+FROM gsscogs/pythonversiontesting:v1.0.3
 
 RUN pyenv global 3.10.0
 
