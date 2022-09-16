@@ -14,6 +14,7 @@ def delete_csvw(metadata_file: Path):
     :return:
     """
     table_group = csvw.TableGroup.from_file(metadata_file)
+    assert isinstance(table_group, csvw.TableGroup)
 
     tables = table_group.tables
     assert isinstance(tables, list)
