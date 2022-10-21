@@ -9,8 +9,6 @@ from pathlib import Path
 import docker
 import sys
 from typing import Tuple
-import os
-import distutils
 
 from csvcubeddevtools.helpers.tar import dir_to_tar
 from csvcubeddevtools.behaviour.temporarydirectory import get_context_temp_dir_path
@@ -23,7 +21,7 @@ if SHOULD_USE_DOCKER:
 
 
 def _run_csvlint(metadata_file_path: Path) -> Tuple[int, str]:
-    if _SHOULD_USE_DOCKER:
+    if SHOULD_USE_DOCKER:
         csvlint = client.containers.create(
             "gsscogs/csvlint", command=f"csvlint -s '/tmp/{metadata_file_path.name}'"
         )

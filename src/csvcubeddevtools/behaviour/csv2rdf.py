@@ -22,7 +22,7 @@ if SHOULD_USE_DOCKER:
     client.images.pull("gsscogs/csv2rdf:native")
 
 
-def _run_csv2rdf(context, metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
+def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
     with TemporaryDirectory() as tmp_dir:
         tmp_dir = Path(tmp_dir)
 
@@ -54,10 +54,19 @@ def _run_csv2rdf(context, metadata_file_path: Path) -> Tuple[int, str, Optional[
             wget https://github.com/Swirrl/csv2rdf/releases/download/0.4.5/csv2rdf-0.4.5-standalone.jar
             echo "#\!/bin/bash \n java -jar csv2rdf-0.4.5-standalone.jar \"\$@\"" > csv2rdf && chmod +x csv2rdf
             """
+            ttl_out_file = tmp_dir / "csv2rdf.ttl"
 
-            return run_command_in_dir(
-                f"csv2rdf -u '{metadata_file_path.resolve()}'", tmp_dir
+            status_code, log = run_command_in_dir(
+                f"/usr/local/bin/csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated", tmp_dir
             )
+
+            if ttl_out_file.exists():
+                with open(ttl_out_file, "r") as f:
+                    ttl_out = f.read()
+            else:
+                ttl_out = ""
+
+            return status_code, log, ttl_out
 
 
 @step('csv2rdf on "{file}" should succeed')
