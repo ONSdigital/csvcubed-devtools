@@ -14,35 +14,50 @@ from tempfile import TemporaryDirectory
 
 from csvcubeddevtools.helpers.tar import dir_to_tar, extract_tar
 from csvcubeddevtools.behaviour.temporarydirectory import get_context_temp_dir_path
+from .dockerornot import SHOULD_USE_DOCKER
+from csvcubeddevtools.helpers.shell import run_command_in_dir
 
-client = docker.from_env()
-client.images.pull("gsscogs/csv2rdf:native")
+if SHOULD_USE_DOCKER:
+    client = docker.from_env()
+    client.images.pull("gsscogs/csv2rdf:native")
 
 
 def _run_csv2rdf(context, metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
     with TemporaryDirectory() as tmp_dir:
         tmp_dir = Path(tmp_dir)
-        csv2rdf = client.containers.create(
-            "gsscogs/csv2rdf:native",
-            command=f"csv2rdf -u /tmp/{metadata_file_path.name} -o /tmp/csv2rdf.ttl -m annotated",
-        )
-        csv2rdf.put_archive("/tmp", dir_to_tar(metadata_file_path.parent))
 
-        csv2rdf.start()
-        response: dict = csv2rdf.wait()
-        exit_code = response["StatusCode"]
-        sys.stdout.write(csv2rdf.logs().decode("utf-8"))
+        if SHOULD_USE_DOCKER:
+            csv2rdf = client.containers.create(
+                "gsscogs/csv2rdf:native",
+                command=f"csv2rdf -u /tmp/{metadata_file_path.name} -o /tmp/csv2rdf.ttl -m annotated",
+            )
+            csv2rdf.put_archive("/tmp", dir_to_tar(metadata_file_path.parent))
 
-        output_stream, output_stat = csv2rdf.get_archive("/tmp/csv2rdf.ttl")
-        extract_tar(output_stream, tmp_dir)
-        maybe_output_file = tmp_dir / "csv2rdf.ttl"
-        if maybe_output_file.exists():
-            with open(maybe_output_file, "r") as f:
-                ttl_out = f.read()
-        else:
-            ttl_out = ""
+            csv2rdf.start()
+            response: dict = csv2rdf.wait()
+            exit_code = response["StatusCode"]
+            sys.stdout.write(csv2rdf.logs().decode("utf-8"))
 
-    return exit_code, csv2rdf.logs().decode("utf-8"), ttl_out
+            output_stream, output_stat = csv2rdf.get_archive("/tmp/csv2rdf.ttl")
+            extract_tar(output_stream, tmp_dir)
+            maybe_output_file = tmp_dir / "csv2rdf.ttl"
+            if maybe_output_file.exists():
+                with open(maybe_output_file, "r") as f:
+                    ttl_out = f.read()
+            else:
+                ttl_out = ""
+
+            return exit_code, csv2rdf.logs().decode("utf-8"), ttl_out
+        else:  # Should not use docker
+            """
+            cd /usr/local/bin
+            wget https://github.com/Swirrl/csv2rdf/releases/download/0.4.5/csv2rdf-0.4.5-standalone.jar
+            echo "#\!/bin/bash \n java -jar csv2rdf-0.4.5-standalone.jar \"\$@\"" > csv2rdf && chmod +x csv2rdf
+            """
+
+            return run_command_in_dir(
+                f"csv2rdf -u '{metadata_file_path.resolve()}'", tmp_dir
+            )
 
 
 @step('csv2rdf on "{file}" should succeed')

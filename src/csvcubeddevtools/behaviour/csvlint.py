@@ -9,24 +9,34 @@ from pathlib import Path
 import docker
 import sys
 from typing import Tuple
+import os
+import distutils
 
 from csvcubeddevtools.helpers.tar import dir_to_tar
 from csvcubeddevtools.behaviour.temporarydirectory import get_context_temp_dir_path
+from csvcubeddevtools.helpers.shell import run_command_in_dir
+from .dockerornot import SHOULD_USE_DOCKER
 
-client = docker.from_env()
-client.images.pull("gsscogs/csvlint")
+if SHOULD_USE_DOCKER:
+    client = docker.from_env()
+    client.images.pull("gsscogs/csvlint")
 
 
 def _run_csvlint(metadata_file_path: Path) -> Tuple[int, str]:
-    csvlint = client.containers.create(
-        "gsscogs/csvlint", command=f"csvlint -s '/tmp/{metadata_file_path.name}'"
-    )
-    csvlint.put_archive("/tmp", dir_to_tar(metadata_file_path.parent))
-    csvlint.start()
-    response: dict = csvlint.wait()
-    exit_code = response["StatusCode"]
-    sys.stdout.write(csvlint.logs().decode("utf-8"))
-    return exit_code, csvlint.logs().decode("utf-8")
+    if _SHOULD_USE_DOCKER:
+        csvlint = client.containers.create(
+            "gsscogs/csvlint", command=f"csvlint -s '/tmp/{metadata_file_path.name}'"
+        )
+        csvlint.put_archive("/tmp", dir_to_tar(metadata_file_path.parent))
+        csvlint.start()
+        response: dict = csvlint.wait()
+        exit_code = response["StatusCode"]
+        sys.stdout.write(csvlint.logs().decode("utf-8"))
+        return exit_code, csvlint.logs().decode("utf-8")
+    else:
+        return run_command_in_dir(
+            f"csvlint -s '{metadata_file_path.resolve()}'", metadata_file_path.parent
+        )
 
 
 @step("csvlint validation of all CSV-Ws should succeed")
