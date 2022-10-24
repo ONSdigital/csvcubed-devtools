@@ -1,7 +1,7 @@
 name: Build csvcubed-devtools
 on:
-  push
-  pull_request
+  push:
+  pull_request:
 
 
 jobs:
