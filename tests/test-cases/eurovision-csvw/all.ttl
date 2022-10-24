@@ -1,0 +1,346 @@
+
+<file:/workspace/entrant.csv#code-list> a <http://www.w3.org/2000/01/rdf-schema#Resource>,
+    <http://www.w3.org/2004/02/skos/core#ConceptScheme>, <http://www.w3.org/ns/dcat#Dataset>,
+    <http://www.w3.org/ns/dcat#Resource>;
+  <http://purl.org/dc/terms/identifier> "Entrant";
+  <http://purl.org/dc/terms/issued> "2022-07-05T12:06:30.572449"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-07-05T12:06:30.572449"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/title> "Entrant"@en;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Entrant"@en;
+  <http://www.w3.org/2000/01/rdf-schema#seeAlso> <file:/workspace/entrant.csv#code-list> .
+
+<file:/workspace/entrant.csv#abba> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "ABBA";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "abba";
+  <http://www.w3.org/ns/ui#sortPriority> 0 .
+
+<file:/workspace/entrant.csv#afro-dite> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Afro-dite";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "afro-dite";
+  <http://www.w3.org/ns/ui#sortPriority> 1 .
+
+<file:/workspace/entrant.csv#alice-babs> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Alice Babs";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "alice-babs";
+  <http://www.w3.org/ns/ui#sortPriority> 2 .
+
+<file:/workspace/entrant.csv#anna-bergendahl> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Anna Bergendahl";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "anna-bergendahl";
+  <http://www.w3.org/ns/ui#sortPriority> 3 .
+
+<file:/workspace/entrant.csv#arvingarna> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Arvingarna";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "arvingarna";
+  <http://www.w3.org/ns/ui#sortPriority> 4 .
+
+<file:/workspace/entrant.csv#benjamin-ingrosso> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Benjamin Ingrosso";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "benjamin-ingrosso";
+  <http://www.w3.org/ns/ui#sortPriority> 5 .
+
+<file:/workspace/entrant.csv#bjorn-skifs> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Björn Skifs";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "bjorn-skifs";
+  <http://www.w3.org/ns/ui#sortPriority> 6 .
+
+<file:/workspace/entrant.csv#blond> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Blond";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "blond";
+  <http://www.w3.org/ns/ui#sortPriority> 7 .
+
+<file:/workspace/entrant.csv#brita-borg> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Brita Borg";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "brita-borg";
+  <http://www.w3.org/ns/ui#sortPriority> 8 .
+
+<file:/workspace/entrant.csv#carola> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Carola";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "carola";
+  <http://www.w3.org/ns/ui#sortPriority> 9 .
+
+<file:/workspace/entrant.csv#charlotte-nilsson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Charlotte Nilsson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "charlotte-nilsson";
+  <http://www.w3.org/ns/ui#sortPriority> 10 .
+
+<file:/workspace/entrant.csv#charlotte-perrelli> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Charlotte Perrelli";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "charlotte-perrelli";
+  <http://www.w3.org/ns/ui#sortPriority> 11 .
+
+<file:/workspace/entrant.csv#chips> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Chips";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "chips";
+  <http://www.w3.org/ns/ui#sortPriority> 12 .
+
+<file:/workspace/entrant.csv#christer-bjorkman> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Christer Björkman";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "christer-bjorkman";
+  <http://www.w3.org/ns/ui#sortPriority> 13 .
+
+<file:/workspace/entrant.csv#claes-goran-hederstrom> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Claes-Göran Hederström";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "claes-goran-hederstrom";
+  <http://www.w3.org/ns/ui#sortPriority> 14 .
+
+<file:/workspace/entrant.csv#edin-adahl> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Edin-Ådahl";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "edin-adahl";
+  <http://www.w3.org/ns/ui#sortPriority> 15 .
+
+<file:/workspace/entrant.csv#eric-saade> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Eric Saade";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "eric-saade";
+  <http://www.w3.org/ns/ui#sortPriority> 16 .
+
+<file:/workspace/entrant.csv#fame> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Fame";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "fame";
+  <http://www.w3.org/ns/ui#sortPriority> 17 .
+
+<file:/workspace/entrant.csv#family-four> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Family Four";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "family-four";
+  <http://www.w3.org/ns/ui#sortPriority> 18 .
+
+<file:/workspace/entrant.csv#forbes> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Forbes";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "forbes";
+  <http://www.w3.org/ns/ui#sortPriority> 19 .
+
+<file:/workspace/entrant.csv#frans> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Frans";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "frans";
+  <http://www.w3.org/ns/ui#sortPriority> 20 .
+
+<file:/workspace/entrant.csv#friends> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Friends";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "friends";
+  <http://www.w3.org/ns/ui#sortPriority> 21 .
+
+<file:/workspace/entrant.csv#herreys> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Herreys";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "herreys";
+  <http://www.w3.org/ns/ui#sortPriority> 22 .
+
+<file:/workspace/entrant.csv#inger-berggren> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Inger Berggren";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "inger-berggren";
+  <http://www.w3.org/ns/ui#sortPriority> 23 .
+
+<file:/workspace/entrant.csv#ingvar-wixell> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Ingvar Wixell";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "ingvar-wixell";
+  <http://www.w3.org/ns/ui#sortPriority> 24 .
+
+<file:/workspace/entrant.csv#jan-johansen> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Jan Johansen";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "jan-johansen";
+  <http://www.w3.org/ns/ui#sortPriority> 25 .
+
+<file:/workspace/entrant.csv#jill-johnson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Jill Johnson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "jill-johnson";
+  <http://www.w3.org/ns/ui#sortPriority> 26 .
+
+<file:/workspace/entrant.csv#john-lundvik> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "John Lundvik";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "john-lundvik";
+  <http://www.w3.org/ns/ui#sortPriority> 27 .
+
+<file:/workspace/entrant.csv#kikki-danielsson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Kikki Danielsson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "kikki-danielsson";
+  <http://www.w3.org/ns/ui#sortPriority> 28 .
+
+<file:/workspace/entrant.csv#lars-berghagen-and-the-dolls> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Lars Berghagen and the Dolls";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "lars-berghagen-and-the-dolls";
+  <http://www.w3.org/ns/ui#sortPriority> 29 .
+
+<file:/workspace/entrant.csv#lena-philipsson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Lena Philipsson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "lena-philipsson";
+  <http://www.w3.org/ns/ui#sortPriority> 30 .
+
+<file:/workspace/entrant.csv#lill-lindfors-and-svante-thuresson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Lill Lindfors and Svante Thuresson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "lill-lindfors-and-svante-thuresson";
+  <http://www.w3.org/ns/ui#sortPriority> 31 .
+
+<file:/workspace/entrant.csv#lill-babs> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Lill-Babs";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "lill-babs";
+  <http://www.w3.org/ns/ui#sortPriority> 32 .
+
+<file:/workspace/entrant.csv#loreen> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Loreen";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "loreen";
+  <http://www.w3.org/ns/ui#sortPriority> 33 .
+
+<file:/workspace/entrant.csv#lotta-engberg> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Lotta Engberg";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "lotta-engberg";
+  <http://www.w3.org/ns/ui#sortPriority> 34 .
+
+<file:/workspace/entrant.csv#malena-ernman> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Malena Ernman";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "malena-ernman";
+  <http://www.w3.org/ns/ui#sortPriority> 35 .
+
+<file:/workspace/entrant.csv#marie-bergman-and-roger-pontare> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Marie Bergman and Roger Pontare";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "marie-bergman-and-roger-pontare";
+  <http://www.w3.org/ns/ui#sortPriority> 36 .
+
+<file:/workspace/entrant.csv#martin-stenmarck> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Martin Stenmarck";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "martin-stenmarck";
+  <http://www.w3.org/ns/ui#sortPriority> 37 .
+
+<file:/workspace/entrant.csv#monica-tornell-and-lasse-holm> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Monica Törnell and Lasse Holm";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "monica-tornell-and-lasse-holm";
+  <http://www.w3.org/ns/ui#sortPriority> 38 .
+
+<file:/workspace/entrant.csv#monica-zetterlund> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Monica Zetterlund";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "monica-zetterlund";
+  <http://www.w3.org/ns/ui#sortPriority> 39 .
+
+<file:/workspace/entrant.csv#mans-zelmerlow> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Måns Zelmerlöw";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "mans-zelmerlow";
+  <http://www.w3.org/ns/ui#sortPriority> 40 .
+
+<file:/workspace/entrant.csv#one-more-time> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "One More Time";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "one-more-time";
+  <http://www.w3.org/ns/ui#sortPriority> 41 .
+
+<file:/workspace/entrant.csv#robin-bengtsson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Robin Bengtsson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "robin-bengtsson";
+  <http://www.w3.org/ns/ui#sortPriority> 42 .
+
+<file:/workspace/entrant.csv#robin-stjernberg> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Robin Stjernberg";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "robin-stjernberg";
+  <http://www.w3.org/ns/ui#sortPriority> 43 .
+
+<file:/workspace/entrant.csv#roger-pontare> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Roger Pontare";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "roger-pontare";
+  <http://www.w3.org/ns/ui#sortPriority> 44 .
+
+<file:/workspace/entrant.csv#sanna-nielsen> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Sanna Nielsen";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "sanna-nielsen";
+  <http://www.w3.org/ns/ui#sortPriority> 45 .
+
+<file:/workspace/entrant.csv#siw-malmkvist> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Siw Malmkvist";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "siw-malmkvist";
+  <http://www.w3.org/ns/ui#sortPriority> 46 .
+
+<file:/workspace/entrant.csv#ted-gardestad> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Ted Gärdestad";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "ted-gardestad";
+  <http://www.w3.org/ns/ui#sortPriority> 47 .
+
+<file:/workspace/entrant.csv#the-ark> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "The Ark";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "the-ark";
+  <http://www.w3.org/ns/ui#sortPriority> 48 .
+
+<file:/workspace/entrant.csv#the-mamas> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "The Mamas";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "the-mamas";
+  <http://www.w3.org/ns/ui#sortPriority> 49 .
+
+<file:/workspace/entrant.csv#the-nova-and-the-dolls> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "The Nova and the Dolls";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "the-nova-and-the-dolls";
+  <http://www.w3.org/ns/ui#sortPriority> 50 .
+
+<file:/workspace/entrant.csv#tomas-ledin> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Tomas Ledin";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "tomas-ledin";
+  <http://www.w3.org/ns/ui#sortPriority> 51 .
+
+<file:/workspace/entrant.csv#tommy-korberg> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Tommy Körberg";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "tommy-korberg";
+  <http://www.w3.org/ns/ui#sortPriority> 52 .
+
+<file:/workspace/entrant.csv#tommy-nilsson> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Tommy Nilsson";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "tommy-nilsson";
+  <http://www.w3.org/ns/ui#sortPriority> 53 .
+
+<file:/workspace/entrant.csv#tusse> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Tusse";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "tusse";
+  <http://www.w3.org/ns/ui#sortPriority> 54 .
+
+<file:/workspace/entrant.csv#osten-warnerbring> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Östen Warnerbring";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/workspace/entrant.csv#code-list>;
+  <http://www.w3.org/2004/02/skos/core#notation> "osten-warnerbring";
+  <http://www.w3.org/ns/ui#sortPriority> 55 .

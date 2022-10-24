@@ -11,7 +11,7 @@ import subprocess
 from tempfile import TemporaryDirectory
 
 
-def run_command_in_dir(command: str, run_dir: Path) -> Tuple[int, str]:
+def run_command_in_dir(command: str, run_dir: Path = Path(".")) -> Tuple[int, str]:
     with TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
         # Use temp files not a PIPE, a PIPE has a tiny buffer than

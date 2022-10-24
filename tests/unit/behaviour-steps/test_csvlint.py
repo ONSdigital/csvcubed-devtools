@@ -9,6 +9,7 @@ from csvcubeddevtools.helpers.file import get_test_cases_dir
 _test_cases_dir = get_test_cases_dir()
 
 
+@pytest.mark.skip
 def test_outside_docker_csvlint_succeeds():
     """
     Test that with the NO_DOCKER=True environmental variable set, csvlint is executed outside docker on the
@@ -29,6 +30,7 @@ def test_outside_docker_csvlint_succeeds():
     assert exit_code == 0, logs
 
 
+@pytest.mark.skip
 def test_outside_docker_csvlint_fails_when_invalid():
     """
     Test that with the NO_DOCKER=True environmental variable set, csvlint is executed outside docker on the

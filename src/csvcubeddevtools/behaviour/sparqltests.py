@@ -29,7 +29,7 @@ def _run_sparql_tests(context, tests_to_run: List[str] = []) -> Tuple[int, str]:
 
 
 def _run_sparql_tests_for_ttl(
-    test_to_run: List[str], ttl_content: str
+    tests_to_run: List[str], ttl_content: str
 ) -> Tuple[int, str]:
     if "all" in tests_to_run:
         tests_to_run = ["skos", "pmd", "qb"]
