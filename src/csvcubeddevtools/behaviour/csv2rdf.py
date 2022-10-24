@@ -70,7 +70,7 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
 def step_impl(context, file: str):
     """csv2rdf on "{file}" should succeed"""
     temp_dir = get_context_temp_dir_path(context)
-    exit_code, logs, ttl_out = _run_csv2rdf(context, temp_dir / file)
+    exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
     assert exit_code == 0
 
     context.turtle = ttl_out
@@ -84,7 +84,7 @@ def step_impl(context):
     context.turtle = ""
 
     for file in csvw_metadata_files:
-        exit_code, logs, ttl_out = _run_csv2rdf(context, temp_dir / file)
+        exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
         assert exit_code == 0
 
         context.turtle += ttl_out
@@ -94,7 +94,7 @@ def step_impl(context):
 def step_impl(context, file: str, expected: str):
     """csv2rdf on \"{file}\" should fail with \"{expected}\" """
     temp_dir = get_context_temp_dir_path(context)
-    exit_code, logs, ttl_out = _run_csv2rdf(context, temp_dir / file)
+    exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
     assert exit_code == 1
     assert expected in logs
 
