@@ -48,16 +48,13 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
                 ttl_out = ""
 
             return exit_code, csv2rdf.logs().decode("utf-8"), ttl_out
-        else:  # Should not use docker
-            """
-            cd /usr/local/bin
-            wget https://github.com/Swirrl/csv2rdf/releases/download/0.4.5/csv2rdf-0.4.5-standalone.jar
-            echo "#\!/bin/bash \n java -jar csv2rdf-0.4.5-standalone.jar \"\$@\"" > csv2rdf && chmod +x csv2rdf
-            """
+        else:
+            # Should not use docker
             ttl_out_file = tmp_dir / "csv2rdf.ttl"
 
             status_code, log = run_command_in_dir(
-                f"/usr/local/bin/csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated", tmp_dir
+                f"/usr/local/bin/csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
+                tmp_dir,
             )
 
             if ttl_out_file.exists():
