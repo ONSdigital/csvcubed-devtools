@@ -1,4 +1,5 @@
 """Test the csvlint behaviour step functionality"""
+import sys
 import os
 
 import pytest
@@ -7,6 +8,26 @@ from csvcubeddevtools.helpers.file import get_test_cases_dir
 
 
 _test_cases_dir = get_test_cases_dir()
+
+
+@pytest.fixture(scope="module", autouse=True)
+def set_csv2rdf_environmental_variable():
+    os.environ["CSV2RDF"] = "/usr/local/bin/csv2rdf"
+
+    yield []
+
+    del os.environ["CSV2RDF"]
+
+
+@pytest.fixture(scope="function", autouse=True)
+def remove_sensitive_imports_before_test():
+    """These two modules configure themselves differently depending on whether they've been tasked with running inside
+    docker or outside. Clean up before every test so that everything is freshly configured."""
+
+    if "csvcubeddevtools.behaviour.csv2rdf" in sys.modules:
+        del sys.modules["csvcubeddevtools.behaviour.csv2rdf"]
+    if "csvcubeddevtools.behaviour.dockerornot" in sys.modules:
+        del sys.modules["csvcubeddevtools.behaviour.dockerornot"]
 
 
 @pytest.mark.skip
@@ -26,6 +47,7 @@ def test_outside_docker_csv2rdf_succeeds():
         )
     finally:
         del os.environ["NO_DOCKER"]
+        del sys.modules["csvcubeddevtools.behaviour.csv2rdf"]
 
     assert exit_code == 0, logs
     assert len(ttl_out) > 0, ttl_out
@@ -46,6 +68,7 @@ def test_outside_docker_csv2rdf_fails_when_invalid():
         )
     finally:
         del os.environ["NO_DOCKER"]
+        del sys.modules["csvcubeddevtools.behaviour.csv2rdf"]
 
     assert exit_code != 0, logs
     assert len(ttl_out) == 0, ttl_out
@@ -58,7 +81,10 @@ def test_inside_docker_csv2rdf_succeeds():
     local system.
     """
     from csvcubeddevtools.behaviour.csv2rdf import _run_csv2rdf
+    from csvcubeddevtools.behaviour.dockerornot import SHOULD_USE_DOCKER
 
+    assert "NO_DOCKER" not in os.environ
+    assert SHOULD_USE_DOCKER
     exit_code, logs, ttl_out = _run_csv2rdf(
         _test_cases_dir
         / "eurovision-csvw"
@@ -74,7 +100,10 @@ def test_inside_docker_csv2rdf_fails_when_invalid():
     Test that with using the docker environment, csv2rdf fails when an invalid input is provided.
     """
     from csvcubeddevtools.behaviour.csv2rdf import _run_csv2rdf
+    from csvcubeddevtools.behaviour.dockerornot import SHOULD_USE_DOCKER
 
+    assert "NO_DOCKER" not in os.environ
+    assert SHOULD_USE_DOCKER
     exit_code, logs, ttl_out = _run_csv2rdf(
         _test_cases_dir / "invalid-csvw" / "year.csv-metadata.json"
     )

@@ -4,6 +4,8 @@ csv2rdf
 
 behave functionality to run csv2rdf on some output
 """
+import os
+
 from behave import step
 from pathlib import Path
 import docker
@@ -52,8 +54,10 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
             # Should not use docker
             ttl_out_file = tmp_dir / "csv2rdf.ttl"
 
+            csv2rdf_command = os.environ.get("CSV2RDF", "csv2rdf")
+
             status_code, log = run_command_in_dir(
-                f"csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
+                f"{csv2rdf_command} -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
                 tmp_dir,
             )
 
