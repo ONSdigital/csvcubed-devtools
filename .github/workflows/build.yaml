@@ -45,7 +45,7 @@ jobs:
           check_name: ${{ matrix.os }}-python${{ matrix.python-version }} unit test results
           junit_files: "pytest_results.xml"
 
-  build_package_and_documentation:
+  build_package:
     if: needs.build_in_environments.result == 'success'
     needs: [build_in_environments]
     runs-on: ubuntu-latest
@@ -78,14 +78,14 @@ jobs:
           path: |
             **/dist/*.whl
 
-  publish_package_and_documentation:
-    if: needs.build_package_and_documentation.result == 'success' # && startsWith(github.ref, 'refs/tags/v')
+  publish_package:
+    if: needs.build_package.result == 'success' # && startsWith(github.ref, 'refs/tags/v')
     needs: [build_package_and_documentation]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: package-and-documentation
+          name: package
 
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
