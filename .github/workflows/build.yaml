@@ -60,8 +60,8 @@ jobs:
       - name: Update version for release
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
-          echo "$(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')"
-          poetry version "$(echo $GIT_REF | sed -e 's/^.*\/v\(.*\)/\1/')"
+          echo "$(echo \"${{ github.ref_name }}\" | sed -e 's/^.*\/v\(.*\)/\1/')"
+          poetry version "$(echo \"${{ github.ref_name }}\" | sed -e 's/^.*\/v\(.*\)/\1/')"
 
       - name: Update version for dev
         # uses a version identifier derived from the Git hash for this commit.
