@@ -53,7 +53,7 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
             ttl_out_file = tmp_dir / "csv2rdf.ttl"
 
             status_code, log = run_command_in_dir(
-                f"/usr/local/bin/csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
+                f"csv2rdf -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
                 tmp_dir,
             )
 
