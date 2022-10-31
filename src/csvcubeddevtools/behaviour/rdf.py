@@ -43,7 +43,7 @@ def step_impl(context):
         data = {}
 
     output_directory = Path("/tmp") if SHOULD_USE_DOCKER else Path(".").resolve()
-    data["output_directory"] = _path_to_file_uri_for_rdflib(output_directory)
+    data["output_directory"] = _path_to_file_uri_for_csv2rdf_outputs(output_directory)
 
     expected_ttl = expected_ttl_template.render(**data)
 
@@ -53,14 +53,12 @@ def step_impl(context):
     )
 
 
-def _path_to_file_uri_for_rdflib(file: Path) -> str:
+def _path_to_file_uri_for_csv2rdf_outputs(file: Path) -> str:
     """
-    Converts a `pathlib.Path` into a file:///.... URI.
-
-    This is necessary due to windows paths being altered by rdflib when they're loaded.
+    Converts a `pathlib.Path` into a file:/.... URI as output by csv2rdf.
     """
 
-    file_uri_prefix = "file://" if isinstance(file, PosixPath) else "file:///"
+    file_uri_prefix = "file:" if isinstance(file, PosixPath) else "file:/"
 
     return file_uri_prefix + os.path.normpath(str(file.absolute())).replace("\\", "/")
 
