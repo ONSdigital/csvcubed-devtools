@@ -100,7 +100,7 @@ def step_impl(context, file: str):
     """csv2rdf on "{file}" should succeed"""
     temp_dir = get_context_temp_dir_path(context)
     csv2rdf_result = _run_csv2rdf(temp_dir / file)
-    assert csv2rdf_result.status_code == 0, log
+    assert csv2rdf_result.status_code == 0, csv2rdf_result.log
 
     _update_context_for_csv2rdf_result(context, csv2rdf_result)
 
@@ -145,7 +145,7 @@ def step_impl(context):
 
         for file in csvw_metadata_files:
             csv2rdf_result = _run_csv2rdf(inputs_temp_dir / file, tmp_dir=tmp_dir)
-            assert csv2rdf_result.status_code == 0, log
+            assert csv2rdf_result.status_code == 0, csv2rdf_result.log
 
             _update_context_for_csv2rdf_result(context, csv2rdf_result)
 
