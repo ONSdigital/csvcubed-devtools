@@ -5,10 +5,13 @@ RDF Test Steps
 from behave import *
 from rdflib.compare import to_isomorphic, graph_diff
 from rdflib import Graph, ConjunctiveGraph
+from jinja2 import Environment, BaseLoader
+from pathlib import Path
 import distutils.util
-from .temporarydirectory import get_context_temp_dir_path
 
+from .temporarydirectory import get_context_temp_dir_path
 from csvcubeddevtools.helpers import rdflibhelpers
+from .dockerornot import SHOULD_USE_DOCKER
 
 
 def test_graph_diff(g1, g2):
@@ -30,10 +33,35 @@ def test_graph_diff(g1, g2):
 
 @step("the RDF should contain")
 def step_impl(context):
+    expected_ttl_template = Environment(loader=BaseLoader).from_string(
+        context.text.strip()
+    )
+    if hasattr(context, "rdf_template_data"):
+        data = context.rdf_template_data
+    else:
+        data = {}
+
+    output_directory = Path("/tmp") if SHOULD_USE_DOCKER else Path(".").resolve()
+    data["output_directory"] = _path_to_file_uri_for_rdflib(output_directory)
+
+    expected_ttl = expected_ttl_template.render(**data)
+
     test_graph_diff(
         Graph().parse(format="turtle", data=context.turtle),
-        Graph().parse(format="turtle", data=context.text.strip()),
+        Graph().parse(format="turtle", data=expected_ttl),
     )
+
+
+def _path_to_file_uri_for_rdflib(file: Path) -> str:
+    """
+    Converts a `pathlib.Path` into a file:///.... URI.
+
+    This is necessary due to windows paths being altered by rdflib when they're loaded.
+    """
+
+    file_uri_prefix = "file://" if isinstance(file, PosixPath) else "file:///"
+
+    return file_uri_prefix + os.path.normpath(str(file.absolute())).replace("\\", "/")
 
 
 @step("the ask query should return {expected_query_result}")
@@ -70,6 +98,7 @@ def step_impl(context, entity_type: str):
 
     assert_ask(context, query, False)
 
+
 @step('the RDF should contain {num_instances:d} instance(s) of "{entity_type}"')
 def step_impl(context, num_instances: int, entity_type: str):
     query = f"""
@@ -81,6 +110,7 @@ def step_impl(context, num_instances: int, entity_type: str):
     """
 
     assert_ask(context, query, False)
+
 
 @step('the RDF should not contain any URIs in the "{uri_prefix}" namespace')
 def step_impl(context, uri_prefix: str):
@@ -97,6 +127,7 @@ def step_impl(context, uri_prefix: str):
     """
 
     assert_ask(context, query, False)
+
 
 @step('the RDF should not contain any reference to "{uri}"')
 def step_impl(context, uri: str):
