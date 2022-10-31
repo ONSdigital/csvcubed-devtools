@@ -1,0 +1,97 @@
+{
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "data.csv#code-list",
+    "url": "data.csv",
+    "tableSchema": {
+    "columns": [
+        {
+            "titles": "Label",
+            "name": "label",
+            "required": true,
+            "propertyUrl": "rdfs:label"
+        },
+        {
+            "titles": "Notation",
+            "name": "notation",
+            "required": true,
+            "propertyUrl": "skos:notation"
+        },
+        {
+            "titles": "Parent Notation",
+            "name": "parent_notation",
+            "required": false,
+            "propertyUrl": "skos:broader",
+            "valueUrl": "data.csv#{+parent_notation}"
+        },
+        {
+            "titles": "Sort Priority",
+            "name": "sort_priority",
+            "required": false,
+            "datatype": "integer",
+            "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+        },
+        {
+            "titles": "Description",
+            "name": "description",
+            "required": false,
+            "propertyUrl": "rdfs:comment"
+        },
+        {
+            "virtual": true,
+            "name": "virt_inScheme",
+            "required": true,
+            "propertyUrl": "skos:inScheme",
+            "valueUrl": "data.csv#code-list"
+        },
+        {
+            "virtual": true,
+            "name": "virt_type",
+            "required": true,
+            "propertyUrl": "rdf:type",
+            "valueUrl": "skos:Concept"
+        }
+    ],
+    "aboutUrl": "data.csv#{+notation}",
+    "primaryKey": "notation"
+},
+    "rdfs:seeAlso": [
+        {
+            "@id": "data.csv#code-list",
+            "@type": [
+                "http://www.w3.org/ns/dcat#Dataset",
+                "http://www.w3.org/ns/dcat#Resource",
+                "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/dc/terms/identifier": [
+                {
+                    "@value": "Entrant"
+                }
+            ],
+            "http://purl.org/dc/terms/issued": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2022-07-05T12:06:30.572449"
+                }
+            ],
+            "http://purl.org/dc/terms/modified": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2022-07-05T12:06:30.572449"
+                }
+            ],
+            "http://purl.org/dc/terms/title": [
+                {
+                    "@language": "en",
+                    "@value": "Entrant"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Entrant"
+                }
+            ]
+        }
+    ]
+}

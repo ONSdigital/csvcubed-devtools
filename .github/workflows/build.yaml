@@ -34,17 +34,26 @@ jobs:
       - name: Run unittests
         run: poetry run pytest --junitxml=pytest_results.xml
 
-      - name: Upload unittests test results from xml file
+      - name: Run behaviour tests
+        run: poetry run behave tests/behaviour --tags=-skip --junit --format progress
+
+      - name: Upload unit & behave test results from xml files
+        if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.os }}-python${{ matrix.python-version }} unit test results
-          path: pytest_results.xml
+          name: ${{ matrix.os }}-python${{ matrix.python-version }} behave test results
+          path: |
+            pytest_results.xml
+            reports/*.xml
 
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      - name: Publish Unit & Behave Test Results
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          check_name: ${{ matrix.os }}-python${{ matrix.python-version }} unit test results
-          junit_files: "pytest_results.xml"
+          check_name: ${{ matrix.os }}-python${{ matrix.python-version }} behave test results
+          junit_files: |
+            reports/*.xml
+            pytest_results.xml
 
   build_package:
     if: needs.build_in_environments.result == 'success'

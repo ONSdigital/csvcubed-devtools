@@ -114,14 +114,14 @@ def _update_context_for_csv2rdf_result(context, csv2rdf_result: Csv2RdfResult):
 
     if not hasattr(context, "rdf_template_data"):
         context.rdf_template_data = {
-            "output_directory": _path_to_file_uri_for_csv2rdf_outputs(
-                csv2rdf_result.output_directory
+            "rdf_input_directory": _path_to_file_uri_for_csv2rdf_outputs(
+                csv2rdf_result.rdf_input_directory
             )
         }
     else:
         context.rdf_template_data[
-            "output_directory"
-        ] = _path_to_file_uri_for_csv2rdf_outputs(csv2rdf_result.output_directory)
+            "rdf_input_directory"
+        ] = _path_to_file_uri_for_csv2rdf_outputs(csv2rdf_result.rdf_input_directory)
 
 
 def _path_to_file_uri_for_csv2rdf_outputs(file: Path) -> str:
