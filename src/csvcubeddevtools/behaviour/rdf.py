@@ -6,8 +6,9 @@ from behave import *
 from rdflib.compare import to_isomorphic, graph_diff
 from rdflib import Graph, ConjunctiveGraph
 from jinja2 import Environment, BaseLoader
-from pathlib import Path
+from pathlib import Path, PosixPath
 import distutils.util
+import os.path
 
 from .temporarydirectory import get_context_temp_dir_path
 from csvcubeddevtools.helpers import rdflibhelpers
