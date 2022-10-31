@@ -40,7 +40,7 @@ def test_outside_docker_csv2rdf_succeeds():
     try:
         from csvcubeddevtools.behaviour.csv2rdf import _run_csv2rdf
 
-        exit_code, logs, ttl_out = _run_csv2rdf(
+        csv2rdf_result = _run_csv2rdf(
             _test_cases_dir
             / "eurovision-csvw"
             / "sweden-at-eurovision-complete-dataset.csv-metadata.json"
@@ -49,8 +49,8 @@ def test_outside_docker_csv2rdf_succeeds():
         del os.environ["NO_DOCKER"]
         del sys.modules["csvcubeddevtools.behaviour.csv2rdf"]
 
-    assert exit_code == 0, logs
-    assert len(ttl_out) > 0, ttl_out
+    assert csv2rdf_result.status_code == 0, csv2rdf_result.log
+    assert len(csv2rdf_result.ttl) > 0, csv2rdf_result.ttl
 
 
 @pytest.mark.skip
@@ -63,16 +63,16 @@ def test_outside_docker_csv2rdf_fails_when_invalid():
     try:
         from csvcubeddevtools.behaviour.csv2rdf import _run_csv2rdf
 
-        exit_code, logs, ttl_out = _run_csv2rdf(
+        csv2rdf_result = _run_csv2rdf(
             _test_cases_dir / "invalid-csvw" / "year.csv-metadata.json"
         )
     finally:
         del os.environ["NO_DOCKER"]
         del sys.modules["csvcubeddevtools.behaviour.csv2rdf"]
 
-    assert exit_code != 0, logs
-    assert len(ttl_out) == 0, ttl_out
-    assert "csv2rdf.main" in logs
+    assert csv2rdf_result.status_code != 0, csv2rdf_result.log
+    assert len(csv2rdf_result.ttl) == 0, csv2rdf_result.ttl
+    assert "csv2rdf.main" in csv2rdf_result.log
 
 
 def test_inside_docker_csv2rdf_succeeds():
@@ -85,14 +85,14 @@ def test_inside_docker_csv2rdf_succeeds():
 
     assert "NO_DOCKER" not in os.environ
     assert SHOULD_USE_DOCKER
-    exit_code, logs, ttl_out = _run_csv2rdf(
+    csv2rdf_result = _run_csv2rdf(
         _test_cases_dir
         / "eurovision-csvw"
         / "sweden-at-eurovision-complete-dataset.csv-metadata.json"
     )
 
-    assert exit_code == 0, logs
-    assert len(ttl_out) > 0, ttl_out
+    assert csv2rdf_result.status_code == 0, csv2rdf_result.log
+    assert len(csv2rdf_result.ttl) > 0, csv2rdf_result.ttl
 
 
 def test_inside_docker_csv2rdf_fails_when_invalid():
@@ -104,13 +104,13 @@ def test_inside_docker_csv2rdf_fails_when_invalid():
 
     assert "NO_DOCKER" not in os.environ
     assert SHOULD_USE_DOCKER
-    exit_code, logs, ttl_out = _run_csv2rdf(
+    csv2rdf_result = _run_csv2rdf(
         _test_cases_dir / "invalid-csvw" / "year.csv-metadata.json"
     )
 
-    assert exit_code != 0, logs
-    assert len(ttl_out) == 0, ttl_out
-    assert "csv2rdf.main" in logs
+    assert csv2rdf_result.status_code != 0, csv2rdf_result.log
+    assert len(csv2rdf_result.ttl) == 0, csv2rdf_result.ttl
+    assert "csv2rdf.main" in csv2rdf_result.log
 
 
 if __name__ == "__main__":

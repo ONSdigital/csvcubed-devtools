@@ -12,6 +12,7 @@ import docker
 import sys
 from typing import Tuple, Optional
 from tempfile import TemporaryDirectory
+from dataclasses import dataclass
 
 
 from csvcubeddevtools.helpers.tar import dir_to_tar, extract_tar
@@ -24,10 +25,18 @@ if SHOULD_USE_DOCKER:
     client.images.pull("gsscogs/csv2rdf:native")
 
 
-def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
-    with TemporaryDirectory() as tmp_dir:
-        tmp_dir = Path(tmp_dir)
+@dataclass
+class Csv2RdfResult:
+    status_code: int
+    log: str
+    ttl: Optional[str]
+    output_directory: Path
 
+
+def _run_csv2rdf(
+    metadata_file_path: Path, tmp_dir: Optional[Path] = None
+) -> Csv2RdfResult:
+    def _run_csv2rdf_internal(tmp_dir: Path) -> Csv2RdfResult:
         if SHOULD_USE_DOCKER:
             csv2rdf = client.containers.create(
                 "gsscogs/csv2rdf:native",
@@ -49,7 +58,12 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
             else:
                 ttl_out = ""
 
-            return exit_code, csv2rdf.logs().decode("utf-8"), ttl_out
+            return Csv2RdfResult(
+                status_code=exit_code,
+                log=csv2rdf.logs().decode("utf-8"),
+                ttl=ttl_out,
+                output_directory=Path("/tmp"),
+            )
         else:
             # Should not use docker
             ttl_out_file = tmp_dir / "csv2rdf.ttl"
@@ -67,39 +81,67 @@ def _run_csv2rdf(metadata_file_path: Path) -> Tuple[int, str, Optional[str]]:
             else:
                 ttl_out = ""
 
-            return status_code, log, ttl_out
+            return Csv2RdfResult(
+                status_code=status_code, log=log, ttl=ttl_out, output_directory=tmp_dir
+            )
+
+        # _update_context_for_csv2rdf_result(context, csv2rdf_result)
+
+    if tmp_dir is None:
+        with TemporaryDirectory() as tmp_dir:
+            tmp_dir = Path(tmp_dir)
+            return _run_csv2rdf_internal(tmp_dir)
+    else:
+        return _run_csv2rdf_internal(tmp_dir)
 
 
 @step('csv2rdf on "{file}" should succeed')
 def step_impl(context, file: str):
     """csv2rdf on "{file}" should succeed"""
     temp_dir = get_context_temp_dir_path(context)
-    exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
-    assert exit_code == 0
+    csv2rdf_result = _run_csv2rdf(temp_dir / file)
+    assert csv2rdf_result.status_code == 0, log
 
-    context.turtle = ttl_out
+    _update_context_for_csv2rdf_result(context, csv2rdf_result)
+
+
+def _update_context_for_csv2rdf_result(context, csv2rdf_result: Csv2RdfResult):
+    if hasattr(context, "turtle"):
+        context.turtle += csv2rdf_result.ttl
+    else:
+        context.turtle = csv2rdf_result.ttl
+
+    if not hasattr(context, "rdf_template_data"):
+        context.rdf_template_data = {
+            "output_directory": csv2rdf_result.output_directory
+        }
+    else:
+        context.rdf_template_data["output_directory"] = csv2rdf_result.output_directory
 
 
 @step("csv2rdf on all CSV-Ws should succeed")
 def step_impl(context):
     """csv2rdf on all CSV-Ws should succeed"""
-    temp_dir = get_context_temp_dir_path(context)
+    inputs_temp_dir = get_context_temp_dir_path(context)
     csvw_metadata_files = temp_dir.rglob("*.csv-metadata.json")
     context.turtle = ""
 
-    for file in csvw_metadata_files:
-        exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
-        assert exit_code == 0
+    with TemporaryDirectory() as tmp_dir:
+        tmp_dir = Path(tmp_dir)
 
-        context.turtle += ttl_out
+        for file in csvw_metadata_files:
+            csv2rdf_result = _run_csv2rdf(inputs_temp_dir / file, tmp_dir=tmp_dir)
+            assert csv2rdf_result.status_code == 0, log
+
+            _update_context_for_csv2rdf_result(context, csv2rdf_result)
 
 
 @step('csv2rdf on "{file}" should fail with "{expected}"')
 def step_impl(context, file: str, expected: str):
     """csv2rdf on \"{file}\" should fail with \"{expected}\" """
     temp_dir = get_context_temp_dir_path(context)
-    exit_code, logs, ttl_out = _run_csv2rdf(temp_dir / file)
-    assert exit_code == 1
-    assert expected in logs
+    csv2rdf_result = _run_csv2rdf(temp_dir / file)
+    assert csv2rdf_result.status_code != 0
+    assert expected in csv2rdf_result.log
 
-    context.turtle = ttl_out
+    _update_context_for_csv2rdf_result(context, csv2rdf_result)

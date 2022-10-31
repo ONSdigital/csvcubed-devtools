@@ -42,9 +42,6 @@ def step_impl(context):
     else:
         data = {}
 
-    output_directory = Path("/tmp") if SHOULD_USE_DOCKER else Path(".").resolve()
-    data["output_directory"] = _path_to_file_uri_for_csv2rdf_outputs(output_directory)
-
     expected_ttl = expected_ttl_template.render(**data)
 
     test_graph_diff(
