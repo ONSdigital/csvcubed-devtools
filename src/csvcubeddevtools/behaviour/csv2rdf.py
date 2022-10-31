@@ -123,7 +123,7 @@ def _update_context_for_csv2rdf_result(context, csv2rdf_result: Csv2RdfResult):
 def step_impl(context):
     """csv2rdf on all CSV-Ws should succeed"""
     inputs_temp_dir = get_context_temp_dir_path(context)
-    csvw_metadata_files = temp_dir.rglob("*.csv-metadata.json")
+    csvw_metadata_files = inputs_temp_dir.rglob("*.csv-metadata.json")
     context.turtle = ""
 
     with TemporaryDirectory() as tmp_dir:
