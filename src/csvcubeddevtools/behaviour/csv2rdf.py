@@ -30,7 +30,7 @@ class Csv2RdfResult:
     status_code: int
     log: str
     ttl: Optional[str]
-    output_directory: Path
+    rdf_input_directory: Path
 
 
 def _run_csv2rdf(
@@ -62,7 +62,7 @@ def _run_csv2rdf(
                 status_code=exit_code,
                 log=csv2rdf.logs().decode("utf-8"),
                 ttl=ttl_out,
-                output_directory=Path("/tmp"),
+                rdf_input_directory=Path("/tmp"),
             )
         else:
             # Should not use docker
@@ -82,10 +82,11 @@ def _run_csv2rdf(
                 ttl_out = ""
 
             return Csv2RdfResult(
-                status_code=status_code, log=log, ttl=ttl_out, output_directory=tmp_dir
+                status_code=status_code,
+                log=log,
+                ttl=ttl_out,
+                rdf_input_directory=metadata_file_path.resolve().parent,
             )
-
-        # _update_context_for_csv2rdf_result(context, csv2rdf_result)
 
     if tmp_dir is None:
         with TemporaryDirectory() as tmp_dir:
