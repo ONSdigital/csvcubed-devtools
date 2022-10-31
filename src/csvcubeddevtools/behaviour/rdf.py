@@ -6,9 +6,8 @@ from behave import *
 from rdflib.compare import to_isomorphic, graph_diff
 from rdflib import Graph, ConjunctiveGraph
 from jinja2 import Environment, BaseLoader
-from pathlib import Path, PosixPath
+from pathlib import Path
 import distutils.util
-import os.path
 
 from .temporarydirectory import get_context_temp_dir_path
 from csvcubeddevtools.helpers import rdflibhelpers
@@ -48,16 +47,6 @@ def step_impl(context):
         Graph().parse(format="turtle", data=context.turtle),
         Graph().parse(format="turtle", data=expected_ttl),
     )
-
-
-def _path_to_file_uri_for_csv2rdf_outputs(file: Path) -> str:
-    """
-    Converts a `pathlib.Path` into a file:/.... URI as output by csv2rdf.
-    """
-
-    file_uri_prefix = "file:" if isinstance(file, PosixPath) else "file:/"
-
-    return file_uri_prefix + os.path.normpath(str(file.absolute())).replace("\\", "/")
 
 
 @step("the ask query should return {expected_query_result}")

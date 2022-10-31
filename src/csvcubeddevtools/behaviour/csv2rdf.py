@@ -5,9 +5,9 @@ csv2rdf
 behave functionality to run csv2rdf on some output
 """
 import os
-
+import os.path
 from behave import step
-from pathlib import Path
+from pathlib import Path, PosixPath
 import docker
 import sys
 from typing import Tuple, Optional
@@ -113,10 +113,24 @@ def _update_context_for_csv2rdf_result(context, csv2rdf_result: Csv2RdfResult):
 
     if not hasattr(context, "rdf_template_data"):
         context.rdf_template_data = {
-            "output_directory": csv2rdf_result.output_directory
+            "output_directory": _path_to_file_uri_for_csv2rdf_outputs(
+                csv2rdf_result.output_directory
+            )
         }
     else:
-        context.rdf_template_data["output_directory"] = csv2rdf_result.output_directory
+        context.rdf_template_data[
+            "output_directory"
+        ] = _path_to_file_uri_for_csv2rdf_outputs(csv2rdf_result.output_directory)
+
+
+def _path_to_file_uri_for_csv2rdf_outputs(file: Path) -> str:
+    """
+    Converts a `pathlib.Path` into a file:/.... URI as output by csv2rdf.
+    """
+
+    file_uri_prefix = "file:" if isinstance(file, PosixPath) else "file:/"
+
+    return file_uri_prefix + os.path.normpath(str(file.absolute())).replace("\\", "/")
 
 
 @step("csv2rdf on all CSV-Ws should succeed")
