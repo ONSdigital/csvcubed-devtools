@@ -157,6 +157,6 @@ def step_impl(context, file: str, expected: str):
     temp_dir = get_context_temp_dir_path(context)
     csv2rdf_result = _run_csv2rdf(temp_dir / file)
     assert csv2rdf_result.status_code != 0
-    assert expected in csv2rdf_result.log
+    assert expected in csv2rdf_result.log, csv2rdf_result.log
 
     _update_context_for_csv2rdf_result(context, csv2rdf_result)

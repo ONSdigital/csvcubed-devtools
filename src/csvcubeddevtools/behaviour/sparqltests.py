@@ -83,4 +83,4 @@ def step_impl(context, test_types: str):
 def step_impl(context, test_types: str, expected: str):
     exit_code, logs = _run_sparql_tests(context, test_types.split(", "))
     assert exit_code == 1, logs
-    assert expected in logs
+    assert expected in logs, logs
