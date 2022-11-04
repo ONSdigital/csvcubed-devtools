@@ -33,7 +33,7 @@ def _run_csvlint(metadata_file_path: Path) -> Tuple[int, str]:
         return exit_code, csvlint.logs().decode("utf-8")
     else:
         return run_command_in_dir(
-            f"csvlint -s '{metadata_file_path.resolve()}'", metadata_file_path.parent
+            f'csvlint -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
         )
 
 

@@ -71,7 +71,8 @@ def _run_csv2rdf(
             csv2rdf_command = os.environ.get("CSV2RDF", "csv2rdf")
 
             status_code, log = run_command_in_dir(
-                f"{csv2rdf_command} -u '{metadata_file_path.resolve()}' -o '{ttl_out_file}' -m annotated",
+                # Do NOT use single quotes inside this command, else it won't work on Windows.
+                f'{csv2rdf_command} -u "{metadata_file_path.resolve()}" -o "{ttl_out_file}" -m annotated',
                 tmp_dir,
             )
 
