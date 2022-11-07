@@ -72,6 +72,7 @@ def test_outside_docker_csv2rdf_fails_when_invalid():
 
     assert csv2rdf_result.status_code != 0, csv2rdf_result.log
     assert len(csv2rdf_result.ttl) == 0, csv2rdf_result.ttl
+    # Ensure that part of the stacktrace is present in the log. csv2rdf.main should always be there.
     assert "csv2rdf.main" in csv2rdf_result.log
 
 
@@ -110,6 +111,7 @@ def test_inside_docker_csv2rdf_fails_when_invalid():
 
     assert csv2rdf_result.status_code != 0, csv2rdf_result.log
     assert len(csv2rdf_result.ttl) == 0, csv2rdf_result.ttl
+    # Ensure that part of the stacktrace is present in the log. csv2rdf.main should always be there.
     assert "csv2rdf.main" in csv2rdf_result.log
 
 
