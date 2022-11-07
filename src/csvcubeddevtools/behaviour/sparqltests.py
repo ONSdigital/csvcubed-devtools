@@ -66,10 +66,10 @@ def _run_sparql_tests_for_ttl(
             test_dir_base = Path(os.environ.get("SPARQL_TESTS_DIR", "/usr/local/tests"))
 
             test_folders = [(test_dir_base / t) for t in tests_to_run]
-            test_dir_params = " ".join([f"-t '{f}'" for f in test_folders])
+            test_dir_params = " ".join([f'-t "{f}"' for f in test_folders])
 
             return run_command_in_dir(
-                f"sparql-test-runner {test_dir_params} '{ttl_file}'"
+                f'sparql-test-runner {test_dir_params} "{ttl_file}"'
             )
 
 
@@ -83,4 +83,4 @@ def step_impl(context, test_types: str):
 def step_impl(context, test_types: str, expected: str):
     exit_code, logs = _run_sparql_tests(context, test_types.split(", "))
     assert exit_code == 1, logs
-    assert expected in logs
+    assert expected in logs, logs

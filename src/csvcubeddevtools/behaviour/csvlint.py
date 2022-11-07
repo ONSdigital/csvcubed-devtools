@@ -33,7 +33,7 @@ def _run_csvlint(metadata_file_path: Path) -> Tuple[int, str]:
         return exit_code, csvlint.logs().decode("utf-8")
     else:
         return run_command_in_dir(
-            f"csvlint -s '{metadata_file_path.resolve()}'", metadata_file_path.parent
+            f'csvlint -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
         )
 
 
@@ -42,7 +42,7 @@ def step_impl(context):
     temp_dir = get_context_temp_dir_path(context)
     for file in temp_dir.rglob("*.csv-metadata.json"):
         exit_code, logs = _run_csvlint(temp_dir / file)
-        assert exit_code == 0
+        assert exit_code == 0, logs
 
 
 @step('csvlint validation of "{file}" should succeed')
@@ -57,4 +57,4 @@ def step_impl(context, file: str, expected: str):
     temp_dir = get_context_temp_dir_path(context)
     exit_code, logs = _run_csvlint(temp_dir / file)
     assert exit_code == 1, logs
-    assert expected in logs
+    assert expected in logs, logs

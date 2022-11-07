@@ -69,3 +69,9 @@ def step_impl(context, file):
 def step_impl(context, file):
     temp_dir = get_context_temp_dir_path(context)
     assert (temp_dir / file).exists(), file
+
+
+@Given('we delete the "{folder}" folder')
+def step_impl(context, folder: str):
+    temp_dir = get_context_temp_dir_path(context)
+    shutil.rmtree(temp_dir / folder)
