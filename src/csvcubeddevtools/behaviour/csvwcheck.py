@@ -32,7 +32,7 @@ def _run_csvwcheck(metadata_file_path: Path) -> Tuple[int, str]:
         return exit_code, csvwcheck.logs().decode("utf-8")
     else:
         return run_command_in_dir(
-            f'bin/csvw-check -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
+            f'csvw-check -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
         )
 
 
