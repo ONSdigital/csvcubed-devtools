@@ -14,6 +14,9 @@ from csvcubeddevtools.helpers.tar import dir_to_tar
 from csvcubeddevtools.behaviour.temporarydirectory import get_context_temp_dir_path
 from csvcubeddevtools.helpers.shell import run_command_in_dir
 from .dockerornot import SHOULD_USE_DOCKER
+import logging
+
+_logger = logging.getLogger(__name__)
 
 if SHOULD_USE_DOCKER:
     csvwcheckclient = docker.from_env()
@@ -31,9 +34,16 @@ def _run_csvwcheck(metadata_file_path: Path) -> Tuple[int, str]:
         sys.stdout.write(csvwcheck.logs().decode("utf-8"))
         return exit_code, csvwcheck.logs().decode("utf-8")
     else:
-        return run_command_in_dir(
-            f'bin/csvw-check -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
+        exit_code, logs = run_command_in_dir(
+            f'csvw-check -s "{metadata_file_path.resolve()}"', metadata_file_path.parent
         )
+        _logger.warn(f"""
+                     ****************************************
+                     exit code = {exit_code}, logs = {logs}
+                     metatdata_file_path.parent = {metadata_file_path.parent}
+                     ########################################
+                     """)
+        return exit_code, logs
 
 
 @step("csvwcheck validation of all CSV-Ws should succeed")
